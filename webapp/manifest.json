@@ -1,0 +1,142 @@
+{
+  "_version": "1.28.0",
+  "sap.app": {
+    "id": "br.com.dfp.eventodfp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.6.7",
+      "toolsId": "3794588f-c983-490b-a8d0-94dadc0d5976"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZCDS_TPL_SO_001_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.84.7",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {},
+        "sap.uxap": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "br.com.dfp.eventodfp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "br.com.dfp.eventodfp.view",
+        "controlAggregation": "pages",
+        "controlId": "flexibleColumnLayout",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        
+        {
+            "pattern": ":layout:",
+            "name": "master",
+            "target": [
+                "master",
+                "detail"
+            ]
+        },
+        {
+            "pattern": "detail/{product}/{layout}",
+            "name": "detail",
+            "target": [
+                "master",
+                "detail"
+            ]
+        }
+      ],
+      "targets": {
+        "TargetLista": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Lista",
+          "viewName": "Lista"
+        },
+        "master": {
+            "viewId": "lista",
+            "viewName": "Lista",
+            "controlAggregation": "beginColumnPages"
+        },
+        "detail": {
+            "viewId": "detail",
+            "viewName": "Detalhes",
+            "controlAggregation": "midColumnPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "br.com.dfp.eventodfp.view.App",
+      "type": "XML",
+      "async": false,
+      "id": "fcl"
+    }
+  }
+}

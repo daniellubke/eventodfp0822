@@ -1,0 +1,53 @@
+<mvc:View controllerName="br.com.dfp.eventodfp.controller.Lista"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+				<f:heading>
+					<Title id="_IDGenTitle1" text="Remessas Manufatura"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<VBox id="_IDGenVBox1" fitContainer="true">
+				<OverflowToolbar id="_IDGenOverflowToolbar1" class="sapFDynamicPageAlignContent">
+					<ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+					<SearchField id="_IDGenSearchField1" search=".onSearch" width="17.5rem"/>
+					<OverflowToolbarButton id="_IDGenOverflowToolbarButton1" icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
+					<OverflowToolbarButton id="_IDGenOverflowToolbarButton2" icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
+				</OverflowToolbar>
+                <List noDataText="Drop list items here" id="list0" items="{path:'/ZCDS_TPL_SO_001',sorter:[{path:'Createdat',descending:true}]}" inset="true">
+					    <items>
+					        <ObjectListItem press="onListItemPress" type="Active" title="{Salesorderid}" number="{ parts:[{path:'Grossamount'},{path:'Currencycode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }" numberUnit="{Currencycode}" intro="{Customername} ({Customerid})" id="item1">
+					            <attributes>
+					                <ObjectAttribute id="_IDGenObjectAttribute1" text="{ path: 'Createdat', formatter: '.Formatter.date' }" />
+                                    <ObjectAttribute id="_IDGenObjectAttribute2" text="{Note}" />
+					            </attributes>
+					            <firstStatus>
+					                <ObjectStatus text="{Lifecyclestatusdescription}" id="status0" title="Status" icon="sap-icon://order-status" state="Warning"/>
+					            </firstStatus>
+					            <secondStatus>
+					                <ObjectStatus text="{Deliverystatusdescription}" id="status1" icon="sap-icon://shipping-status" state="Success"/>
+					            </secondStatus></ObjectListItem>
+					    </items>
+					    
+					    </List>
+		
+			</VBox>
+		</f:content>
+
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="_IDGenOverflowToolbar2">
+				<ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+				<Button id="_IDGenButton1" type="Accept" text="Accept"/>
+				<Button id="_IDGenButton2" type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

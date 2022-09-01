@@ -1,0 +1,100 @@
+<mvc:View xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" controllerName="br.com.dfp.eventodfp.controller.Detalhes" displayBlock="true">
+    <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle1">
+				<actions>
+					<m:ToggleButton id="_IDGenToggleButton1" text="Editar" type="Emphasized" press=".onEditToggleButtonPress"/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+        <headerContent>
+
+            <m:FlexBox id="_IDGenFlexBox1" wrap="Wrap" fitContainer="true">
+            
+            <f:Avatar id="_IDGenAvatar1" displaySize="L" displayShape="Square" class="sapUiTinyMarginEnd"/>
+	        
+				<m:VBox id="_IDGenVBox1" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:HBox id="_IDGenHBox1" class="sapUiTinyMarginBottom" renderType="Bare">
+                    
+						<m:Label id="_IDGenLabel7" text="Cliente:" class="sapUiTinyMarginEnd"/>
+						<m:Text id="_IDGenText1" text="{Customerid}"/>
+                       
+					</m:HBox>
+
+					<m:HBox id="_IDGenHBox2" class="sapUiTinyMarginBottom" renderType="Bare">
+						<m:Label id="_IDGenLabel8" text="Nome:" class="sapUiTinyMarginEnd"/>
+						<m:Text id="_IDGenText2" text="{Customername}"/>
+					</m:HBox>
+
+					<m:HBox id="_IDGenHBox3">
+						<m:Label id="_IDGenLabel9" text="Data do pedido:" class="sapUiTinyMarginEnd"/>
+						<m:Text id="_IDGenText3" text="{ path: 'Createdat', formatter: '.Formatter.date' }"/>
+					</m:HBox>
+
+				</m:VBox>
+
+                
+                <m:VBox id="_IDGenVBox2" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">     
+					<m:Title id="_IDGenTitle1" text="Status" class="sapUiTinyMarginBottom"/>
+					<m:ObjectStatus id="_IDGenObjectStatus1" text="{Lifecyclestatusdescription}" icon="sap-icon://order-status" state="Warning" class="sapMObjectStatusLarge"/>
+				</m:VBox>
+
+                <m:VBox id="_IDGenVBox5" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:Title id="_IDGenTitle4" text="Valor" class="sapUiTinyMarginBottom"/>
+                    <m:ObjectNumber id="_IDGenObjectNumber1" number="{ parts:[{path:'Grossamount'},{path:'Currencycode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }" unit="{Currencycode}" state="None" class="sapMObjectNumberLarge"/>
+				</m:VBox>
+
+                <m:VBox id="_IDGenVBox3" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:Title id="_IDGenTitle2" text="Delivery" class="sapUiTinyMarginBottom"/>
+					<m:ObjectStatus id="_IDGenObjectStatus2" text="{Deliverystatusdescription}" icon="sap-icon://shipping-status" state="Success" class="sapMObjectStatusLarge"/>
+				</m:VBox>
+               
+
+			</m:FlexBox>
+
+		</headerContent>
+        <sections>
+
+			<ObjectPageSection id="_IDGenObjectPageSection2" title="Acompanhamento">
+				<subSections>
+					<ObjectPageSubSection id="_IDGenObjectPageSubSection2">
+						<blocks>
+							
+						
+						<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout" width="100%" id="layout2">
+						    <sap.ui.layout:content>
+						        
+						        
+						    <m:FeedInput placeholder="Registrar algo aqui..." buttonTooltip="Enviar" id="input0" post="onPost"/>
+						        
+						    <m:List noDataText="Drop list items here" id="list1" items="{path:'to_message',sorter:[{path:'Messageposition',descending:true}]}">
+						        
+						    <m:items>
+						        <m:FeedListItem icon="sap-icon://personnel-view" sender="{Createdby}" text="{Message}" info="{i18n>messageStatus}" timestamp="{path: 'Createdat', formatter : '.Formatter.date'}" id="item1">
+                                        <m:FeedListItemAction id="_IDGenFeedListItemAction1" text="Delete" icon="sap-icon://delete" key="{Key}" press="onActionPressed" />
+                                </m:FeedListItem>
+                                
+                            </m:items>
+						        
+						    </m:List>
+						        
+						        
+						    
+						        
+						    </sap.ui.layout:content>
+						</sap.ui.layout:VerticalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+        <footer>
+			<m:OverflowToolbar id="_IDGenOverflowToolbar1">
+				<m:ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+				<m:Button id="_IDGenButton5" type="Reject" text="Processar" icon="sap-icon://decline"/>
+                <m:Button id="_IDGenButton6" type="Accept" icon="sap-icon://accept" text="Encerrar"/>
+			</m:OverflowToolbar>
+		</footer>
+
+	</ObjectPageLayout>
+</mvc:View>
